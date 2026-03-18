@@ -1,0 +1,17 @@
+services:
+  tbot3_monitor:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: tbot3_monitor
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - TURTLEBOT3_MODEL=burger
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./workspace/src:/root/ws/src
+      - ./results:/root/ws/results
+    network_mode: host
+    stdin_open: true
+    tty: true
