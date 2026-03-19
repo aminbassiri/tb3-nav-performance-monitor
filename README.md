@@ -225,9 +225,9 @@ results/
 
 # 🎥 Demo Video
 
-Put your video link here:
+Video link here:
 
-https://www.youtube.com/watch?v=YOUR_https://youtu.be/s3MAgZvcXAQ_LINK
+https://youtu.be/s3MAgZvcXAQ
 
 ---
 
