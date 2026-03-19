@@ -1,102 +1,273 @@
 # 🚀 TurtleBot3 Navigation Performance Monitor
 
-This project implements a performance monitoring system for TurtleBot3 navigation using ROS2. It evaluates navigation behavior by collecting and analyzing key metrics such as path efficiency, goal completion time, and obstacle avoidance performance.
+A ROS 2 Humble project for monitoring and evaluating TurtleBot3 navigation performance in Gazebo using Nav2.
+
+This system collects real-time navigation metrics, logs them into CSV files, compares results across multiple environments, and visualizes performance through a web dashboard.
 
 ---
 
-## 📌 Overview
+# 📌 Project Overview
 
-The system is designed to:
-- Monitor robot navigation in real-time
-- Collect metrics from ROS2 topics
-- Log results into CSV files
-- Analyze navigation performance
+This project provides a complete evaluation pipeline for robot navigation:
 
----
-
-## 🧠 Key Features
-
-- Goal tracking
-- Navigation time measurement
-- Path efficiency calculation
-- Obstacle avoidance evaluation
-- CSV logging
-- Performance comparison tools
+- Real-time performance monitoring
+- Metric computation and logging
+- Adaptive behavior analysis
+- Multi-environment benchmarking
+- Web-based visualization
 
 ---
 
-## 🏗️ Project Structure
+# 🧠 Features
+
+## Navigation Performance Metrics
+The system measures:
+
+- Path execution time (goal start → completion)
+- Navigation accuracy (final distance to goal)
+- Obstacle avoidance efficiency (actual path vs planned path)
+- Recovery behavior frequency (stuck detection)
+- Battery consumption proxy (based on path length)
+
+---
+
+## Adaptive Behavior System
+Dynamic adjustments based on performance:
+
+- Reduce velocity when robot gets stuck frequently
+- Increase goal tolerance when accuracy is poor
+- Switch to conservative mode when efficiency is low
+- Adjust navigation behavior based on environment complexity
+
+---
+
+## Data Logging & Visualization
+
+- CSV logging with timestamps
+- Console monitoring and warnings
+- Performance comparison across environments
+- Flask-based dashboard (runs outside Docker)
+
+---
+
+## Multi-Environment Testing
+
+Tested in:
+
+- Basic world
+- TurtleBot3 house world
+- Narrow / cluttered environment
+
+---
+
+# 🏗️ Project Structure
 
 tb3-nav-performance-monitor/
 ├── docker/
 ├── workspace/
+│   └── src/tbot3_nav_monitor/
+│       ├── goal_bridge.py
+│       ├── metrics_collector.py
+│       ├── csv_logger.py
+│       └── setup.py
 ├── tools/
+│   ├── compare_results.py
+│   └── dashboard.py
 ├── results/
+├── media/
 ├── docker-compose.yml
-├── README.md
+├── requirements.txt
+└── README.md
 
 ---
 
-## ⚙️ Setup Instructions
+# 💻 Development Environment
 
-### Start Docker container
+- Windows 11
+- Docker Desktop
+- WSL2 (Ubuntu)
+- VS Code
+- ROS 2 Humble
+- Gazebo
+- Nav2
+- TurtleBot3 Burger
+
+---
+
+# ⚙️ Prerequisites
+
+Install Flask:
+
+pip3 install flask
+
+---
+
+# 🐳 Step-by-Step Setup
+
+## Step 1 — Open Docker Desktop
+Make sure Docker Desktop is running.
+
+## Step 2 — Open Ubuntu (WSL2)
+
+## Step 3 — Go to project folder
+
+cd ~/ai4i_assignment
+
+## Step 4 — Start container
 
 docker compose up -d
 
-### Enter container
+## Step 5 — Enter container
 
 docker exec -it tbot3_monitor bash
 
-### Source ROS2
+## Step 6 — Source ROS
 
 source /opt/ros/humble/setup.bash  
 source /root/ws/install/setup.bash
 
+## Step 7 — Build (if needed)
+
+cd /root/ws  
+rm -rf build install log  
+colcon build  
+source install/setup.bash
+
 ---
 
-## ▶️ Running the System
+# ▶️ Running the Full System
 
-### Set initial pose
+## Terminal 1 — Gazebo
+
+Basic:
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+
+House:
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+
+---
+
+## Terminal 2 — Navigation
+
+ros2 launch turtlebot3_navigation2 navigation2.launch.py use_sim_time:=True use_rviz:=False
+
+---
+
+## Terminal 3 — Initial Pose
 
 ros2 topic pub --once /initialpose geometry_msgs/msg/PoseWithCovarianceStamped "{header: {frame_id: 'map'}, pose: {pose: {position: {x: -2.0, y: -0.5, z: 0.0}, orientation: {w: 1.0}}}}"
 
-### Send navigation goal
+Wait 5 seconds.
 
-ros2 topic pub --once /goal_pose geometry_msgs/msg/PoseStamped "{header: {frame_id: 'map'}, pose: {position: {x: 0.8, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}"
+---
 
-### Run metrics collector
+## Terminal 4 — goal_bridge
+
+ros2 run tbot3_nav_monitor goal_bridge
+
+---
+
+## Terminal 5 — metrics_collector
 
 ros2 run tbot3_nav_monitor metrics_collector
 
 ---
 
-## 📊 Metrics
+## Terminal 6 — Send Goal
 
-- Goal completion time  
-- Path efficiency  
-- Obstacle avoidance efficiency  
-- Success rate  
+ros2 topic pub --once /goal_pose geometry_msgs/msg/PoseStamped "{header: {frame_id: 'map'}, pose: {position: {x: 0.8, y: 0.0, z: 0.0}, orientation: {w: 1.0}}}"
 
 ---
 
-## 📁 Output
+# 🌍 Multi-Environment Testing
 
-Results are saved in:
+Before each environment:
+
+rm -f /root/ws/results/goal_metrics.csv
+
+---
+
+## Save results
+
+Basic:
+docker cp tbot3_monitor:/root/ws/results/goal_metrics.csv ~/ai4i_assignment/results/goal_metrics_basic.csv
+
+House:
+docker cp tbot3_monitor:/root/ws/results/goal_metrics.csv ~/ai4i_assignment/results/goal_metrics_house.csv
+
+Maze:
+docker cp tbot3_monitor:/root/ws/results/goal_metrics.csv ~/ai4i_assignment/results/goal_metrics_maze.csv
+
+---
+
+# 📊 Dashboard
+
+cd ~/ai4i_assignment/tools  
+python3 dashboard.py
+
+Open in browser:
+http://localhost:5000
+
+---
+
+# 📈 Compare Results
+
+cd ~/ai4i_assignment/tools  
+python3 compare_results.py
+
+---
+
+# 📂 Output
 
 results/
 
 ---
 
-## 🧪 Implementation
+# 🎥 Demo Video
 
-- ROS2 (rclpy)
-- Topics: /odom, /goal_pose, /plan
-- Custom node: metrics_collector.py
-- Data saved as CSV
+Put your video link here:
+
+https://www.youtube.com/watch?v=YOUR_https://youtu.be/s3MAgZvcXAQ_LINK
 
 ---
 
-## 👨‍💻 Author
+# 🖼️ Screenshots
+
+![Dashboard](media/dashboard.png)
+
+---
+
+# ⚠️ Troubleshooting
+
+## GitHub push error
+Use Personal Access Token instead of password.
+
+## Dashboard not opening
+Run:
+python3 dashboard.py
+
+## Package not found
+cd /root/ws  
+colcon build  
+source install/setup.bash
+
+---
+
+# 👨‍💻 Author
 
 Amin Basiri  
 Robotics Engineer
+
+---
+
+# 📌 Interview Note
+
+This project demonstrates:
+
+- ROS2 system integration  
+- Navigation performance evaluation  
+- Real-time monitoring  
+- Adaptive behavior logic  
+- Multi-environment testing  
+- Docker-based reproducibility  
+- Data visualization  
