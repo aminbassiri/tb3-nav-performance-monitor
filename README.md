@@ -256,18 +256,4 @@ source install/setup.bash
 # 👨‍💻 Author
 
 Amin Basiri  
-Robotics Engineer
-
----
-
-# 📌 Interview Note
-
-This project demonstrates:
-
-- ROS2 system integration  
-- Navigation performance evaluation  
-- Real-time monitoring  
-- Adaptive behavior logic  
-- Multi-environment testing  
-- Docker-based reproducibility  
-- Data visualization  
+Robotics Engineer 
