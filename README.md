@@ -65,28 +65,23 @@ Tested in:
 tb3-nav-performance-monitor/
 ├── docker/
 ├── workspace/
-│   └── src/
-│       └── tbot3_nav_monitor/
-│           ├── package.xml
-│           ├── setup.py
-│           ├── resource/
-│           └── tbot3_nav_monitor/
-│               ├── goal_bridge.py
-│               ├── metrics_collector.py
-│               └── csv_logger.py
+│ └── src/
+│ └── tbot3_nav_monitor/
+│ ├── goal_bridge.py
+│ ├── metrics_collector.py
+│ └── csv_logger.py
 ├── tools/
-│   ├── compare_results.py
-│   └── dashboard.py
+│ ├── compare_results.py
+│ └── dashboard.py
 ├── results/
-│   ├── goal_metrics_basic.csv
-│   ├── goal_metrics_house.csv
-│   └── goal_metrics_maze.csv
+│ ├── goal_metrics_basic.csv
+│ ├── goal_metrics_house.csv
+│ └── goal_metrics_maze.csv
 ├── media/
-│   ├── dashboard.png
-│   ├── gazebo_basic.png
-│   ├── gazebo_house.png
-│   ├── gazebo_maze.png
-│   └── demo_link.txt
+│ ├── dashboard.png
+│ ├── gazebo_basic.png
+│ ├── gazebo_house.png
+│ └── gazebo_maze.png
 ├── docker-compose.yml
 ├── README.md
 └── requirements.txt
