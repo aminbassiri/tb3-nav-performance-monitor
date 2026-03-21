@@ -60,7 +60,7 @@ Tested in:
 
 ---
 
-# 🏗️ Project Structure
+## 🏗️ Project Structure
 
 tb3-nav-performance-monitor/
 ├── docker/
