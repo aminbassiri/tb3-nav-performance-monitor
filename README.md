@@ -142,7 +142,8 @@ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
 or
 ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
 or
-ros2 launch turtlebot3_gazebo My_maze.world.py
+ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py \
+world:=/root/ws/worlds/My_maze.world
 ```
 
 👉 Wait until Gazebo fully loads
