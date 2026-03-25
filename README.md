@@ -314,12 +314,4 @@ python3 compare_results.py
 
 [https://youtu.be/s3MAgZvcXAQ](https://youtu.be/s3MAgZvcXAQ)
 
----
 
-# 👨‍💻 Author
-
-Amin Basiri
-Robotics Engineer
-
-
-هم آماده کنم.
