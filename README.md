@@ -41,6 +41,7 @@ tb3-nav-performance-monitor/
 │   └── dashboard.py
 ├── results/
 ├── media/
+├── worlds/My_maze.world
 ├── docker-compose.yml
 └── README.md
 ```
