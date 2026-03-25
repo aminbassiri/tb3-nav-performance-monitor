@@ -139,6 +139,10 @@ source /opt/ros/humble/setup.bash
 source /root/ws/install/setup.bash
 
 ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+or
+ros2 launch turtlebot3_gazebo turtlebot3_house.launch.py
+or
+ros2 launch turtlebot3_gazebo My_maze.world.py
 ```
 
 👉 Wait until Gazebo fully loads
