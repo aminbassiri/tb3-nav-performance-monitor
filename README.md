@@ -315,9 +315,22 @@ python3 compare_results.py
 * Always clear CSV before new test
 
 ---
+## 🐳 Docker Image
 
+A ready-to-run Docker image is available on Docker Hub:
+
+https://hub.docker.com/r/aminbassiri/tb3-nav-monitor
+
+## Pull the image with:
+
+```bash
+https://hub.docker.com/r/aminbassiri/tb3-nav-monitor
+---
 # 🎥 Demo
 
 [https://youtu.be/s3MAgZvcXAQ](https://youtu.be/s3MAgZvcXAQ)
+
+---
+Author: Amin Basiri
 
 
