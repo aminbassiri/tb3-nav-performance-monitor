@@ -197,6 +197,9 @@ ros2 topic pub --once /initialpose geometry_msgs/msg/PoseWithCovarianceStamped "
 ### goal_bridge
 
 ```bash
+docker exec -it tbot3_monitor bash
+source /opt/ros/humble/setup.bash
+source /root/ws/install/setup.bash
 ros2 run tbot3_nav_monitor goal_bridge
 ```
 
@@ -205,6 +208,9 @@ ros2 run tbot3_nav_monitor goal_bridge
 ### metrics_collector
 
 ```bash
+docker exec -it tbot3_monitor bash
+source /opt/ros/humble/setup.bash
+source /root/ws/install/setup.bash
 ros2 run tbot3_nav_monitor metrics_collector
 ```
 
@@ -215,6 +221,9 @@ ros2 run tbot3_nav_monitor metrics_collector
 # 🧹 STEP 5 — Clear Old Results
 
 ```bash
+docker exec -it tbot3_monitor bash
+source /opt/ros/humble/setup.bash
+source /root/ws/install/setup.bash
 rm -f /root/ws/results/goal_metrics.csv
 ```
 
@@ -223,6 +232,9 @@ rm -f /root/ws/results/goal_metrics.csv
 # 🎯 STEP 6 — Send Goal
 
 ```bash
+docker exec -it tbot3_monitor bash
+source /opt/ros/humble/setup.bash
+source /root/ws/install/setup.bash
 ros2 topic pub --once /goal_pose geometry_msgs/msg/PoseStamped "{header: {frame_id: 'map'}, pose: {position: {x: -1.5, y: 0.7, z: 0.0}, orientation: {w: 1.0}}}"
 ```
 
