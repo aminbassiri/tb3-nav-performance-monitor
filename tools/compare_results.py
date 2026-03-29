@@ -2,8 +2,10 @@ import csv
 import os
 from statistics import mean
 
+# Directory where result CSV files are stored
 RESULTS_DIR = os.path.expanduser("~/ai4i_assignment/results")
 
+# Mapping of environments to their CSV files
 FILES = {
     "Basic": "goal_metrics_basic.csv",
     "House": "goal_metrics_house.csv",
@@ -12,6 +14,10 @@ FILES = {
 
 
 def read_csv(path):
+    """
+    Reads CSV file and converts rows into structured numeric data.
+    Skips invalid rows.
+    """
     rows = []
     if not os.path.exists(path):
         return rows
@@ -37,6 +43,9 @@ def read_csv(path):
 
 
 def summarize(rows):
+    """
+    Computes average metrics for a given environment.
+    """
     if not rows:
         return None
 
@@ -53,6 +62,9 @@ def summarize(rows):
 
 
 def main():
+    """
+    Main function: compares performance across environments.
+    """
     print("\n=== Navigation Performance Comparison ===\n")
 
     for env_name, filename in FILES.items():
@@ -78,9 +90,9 @@ def main():
         print()
 
     print("Interpretation:")
-    print("- More complex environments should usually increase time, path length, and battery use.")
-    print("- Final error indicates goal-reaching accuracy.")
-    print("- Efficiency may be inflated if planned path is underestimated by /plan timing.\n")
+    print("- More complex environments → more time, path, and energy usage")
+    print("- Final error → navigation accuracy")
+    print("- Efficiency → how optimal the path is\n")
 
 
 if __name__ == "__main__":
