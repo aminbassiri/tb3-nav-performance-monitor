@@ -318,8 +318,6 @@ Open:
 
 ```
 http://localhost:5000
-```
-Here is a clean README section you can use:
 
 ---
 
@@ -347,8 +345,6 @@ Go to:
 http://127.0.0.1:5000
 ```
 
-
----
 
 # 📈 Compare Results
 
