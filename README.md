@@ -319,6 +319,13 @@ Open:
 ```
 http://localhost:5000
 ```
+If Dashboard is not open:
+Install:
+pip install flask pandas matplotlib
+python3 dashboard.py
+
+Then open:
+http://127.0.0.1:5000
 
 ---
 
