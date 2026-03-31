@@ -347,10 +347,6 @@ Go to:
 http://127.0.0.1:5000
 ```
 
----
-
-If the page still does not load, make sure the script is running without errors and the port is not blocked.
-
 
 ---
 
