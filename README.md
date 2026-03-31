@@ -319,13 +319,38 @@ Open:
 ```
 http://localhost:5000
 ```
-If Dashboard is not open:
-Install:
-pip install flask pandas matplotlib
-python3 dashboard.py
+Here is a clean README section you can use:
 
-Then open:
+---
+
+## Dashboard Setup
+
+If the dashboard does not open, follow these steps:
+
+### 1. Install Required Dependencies
+
+```bash
+pip install flask pandas matplotlib
+```
+
+### 2. Run the Dashboard
+
+```bash
+python3 dashboard.py
+```
+
+### 3. Open in Browser
+
+Go to:
+
+```
 http://127.0.0.1:5000
+```
+
+---
+
+If the page still does not load, make sure the script is running without errors and the port is not blocked.
+
 
 ---
 
